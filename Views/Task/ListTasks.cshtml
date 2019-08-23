@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "ListTasks";
+}
+
+<h1>ListTasks</h1>
+
+@model List<UserTask>
+
+@foreach (var task in Model)
+{
+<div class="col-4">
+    <h4>ID: @task.TaskId.</h4>
+    <p>Description: @task.Description</p>
+    <p>Due: @task.DueDate</p>
+    <p>Complete?: @task.Complete</p>
+    @if (task.Complete == false)
+    {
+    <a type="submit" href="/Task/MarkComplete?Id=@task.TaskId"><input type="button" class="btn btn-secondary" value="Mark Complete" /></a>
+    <br />
+    }
+    <a type="submit" href="/Task/RemoveTask?Id=@task.TaskId"><input type="button" class="btn btn-danger" value="Delete" /></a>
+    <br />
+</div>
+}
+<a type="submit" href="/Task/AddTask" ><input type="button" class="btn btn-primary" value="Add Task"/></a>
